@@ -21,15 +21,38 @@ class AppFixtures extends Fixture
         // $manager->persist($product);
 
         $faker = Faker\Factory::create();
-
-        $exps = [];
-        for( $i=0; $i < 50; $i++){
+      
+        for( $i=0; $i < 20; $i++){
             $exp = new ProfessionalExperiences();
-           
+            $exp->setTitle($faker->jobTitle);
+            $exp->setCompany($faker->company);
+            $exp->setCreatedAt(new DateTime());
+            $date1 = $faker->dateTimeBetween($startDate = '-30 years', $endDate = 'now', $timezone = null);
+            $exp->setStartDate($date1);
+            $exp->setEndDate($faker->dateTimeBetween($startDate = $date1, $endDate = 'now', $timezone = null));
+            $exp->setDescription($faker->text($faker->numberBetween(500,700)));
+            $exp->setAddress($faker->city);
             $manager->persist($exp);
-            $exps[] = $exp;
         }
-        
+        for( $i=0; $i < 12; $i++){
+            $hob = new Hobbies();
+            $hob->setName($faker->word);
+            $hob->setCreatedAt(new DateTime());
+            $hob->setIcon($faker->word);
+            $hob->setDescription($faker->text($faker->numberBetween(100,400)));
+            $manager->persist($hob);
+        }
+        for( $i=0; $i < 15; $i++){
+            $edu = new Education();
+            $edu->setTitle($faker->jobTitle);
+            $edu->setDiploma($faker->words($nb = $faker->numberBetween(2,7), $asText = true));
+            $edu->setCreatedAt(new DateTime());
+            $edu->setFulfillment($faker->numberBetween(50,100));
+            $edu->setDiplomaDate($faker->dateTimeBetween($startDate = '-35 years', $endDate = 'now', $timezone = null));
+            $edu->setDescription($faker->text($faker->numberBetween(500,700)));
+            $edu->setAddress($faker->city);
+            $manager->persist($edu);
+        }
 
         $manager->flush();
     }
