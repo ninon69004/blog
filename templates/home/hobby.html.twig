@@ -5,5 +5,19 @@
 {% block body %} 
 
     <h1> Mes hobbies </h2>
-
+    <div class="row" style="justify-content: center;">
+        {% for hobby in hobbies %}
+            <div class="card col-md-4" style="width: 18rem; margin:5px;">
+                <div class="card-body" >
+                    <div class="material-icons row" style="font-size: 5rem;width: 100%; justify-content: center; text-align:center;">
+                        <div class="col">{{hobby.icon}}</div>
+                    </div>
+                    <h5 class="card-title">{{hobby.name}}</h5>
+                    <p class="card-text" >
+                        {{hobby.description}}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
