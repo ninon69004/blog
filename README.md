@@ -32,6 +32,7 @@ Creating project
             
             composer req admin
                 symfony console make:admin:dashboard
+                symfony console make:admin:crud
                 * Configure your Dashboard at "src/Controller/Admin/AdminController.php"
                  * Run "make:admin:crud" to generate CRUD controllers and link them from the Dashboard.
 
