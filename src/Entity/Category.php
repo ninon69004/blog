@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ * @ORM\Entity(repositoryClass=CategoryRepository::class)
  */
-class Article
+class Category
 {
     /**
      * @ORM\Id
@@ -25,9 +25,9 @@ class Article
     private $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $content;
+    private $description;
 
     /**
      * @ORM\Column(type="datetime")
@@ -35,19 +35,15 @@ class Article
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
+     * @ORM\ManyToMany(targetEntity=Article::class, mappedBy="categories")
      */
-    private $author;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="articles")
-     */
-    private $categories;
+    private $articles;
 
     public function __construct()
     {
-        $this->categories = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -66,14 +62,14 @@ class Article
         return $this;
     }
 
-    public function getContent(): ?string
+    public function getDescription(): ?string
     {
-        return $this->content;
+        return $this->description;
     }
 
-    public function setContent(string $content): self
+    public function setDescription(?string $description): self
     {
-        $this->content = $content;
+        $this->description = $description;
 
         return $this;
     }
@@ -90,39 +86,32 @@ class Article
         return $this;
     }
 
-    public function getAuthor(): ?User
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(?User $author): self
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
     /**
-     * @return Collection|Category[]
+     * @return Collection|Article[]
      */
-    public function getCategories(): Collection
+    public function getArticles(): Collection
     {
-        return $this->categories;
+        return $this->articles;
     }
 
-    public function addCategory(Category $category): self
+    public function addArticle(Article $article): self
     {
-        if (!$this->categories->contains($category)) {
-            $this->categories[] = $category;
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->addCategory($this);
         }
 
         return $this;
     }
 
-    public function removeCategory(Category $category): self
+    public function removeArticle(Article $article): self
     {
-        $this->categories->removeElement($category);
+        if ($this->articles->removeElement($article)) {
+            $article->removeCategory($this);
+        }
 
         return $this;
     }
+
+    
 }
