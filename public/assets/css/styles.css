@@ -1,0 +1,31 @@
+h1, h2, h3{
+    text-transform: uppercase !important;
+    text-align: center !important;
+}
+h1 {
+    margin-top: 20vh;
+}
+.round-image-presentation {
+    margin: 5vh;
+    border-radius: 50% !important;
+    text-align: center !important;
+    height: 50vh !important;
+
+}
+.round-image-presentation div.home-image {
+    height: 50vh !important;
+    display: inline-block;
+    background: url("/../../assets/images/images-libres.jpg")  no-repeat;
+    aspect-ratio: 1;
+    background-size: cover;
+    
+}
+.divider-white {
+    background-color: #fff;
+    height: 1vh;
+    width: 80%;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    margin-left: 10%;
+    margin-right: 10%;
+}
