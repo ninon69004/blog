@@ -2,9 +2,11 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Article;
-use App\Entity\Category;
-use App\Entity\User;
+use App\Entity\ProfessionalExperiences;
+use App\Entity\Hobbies;
+use App\Entity\Education;
+
+
 use DateTime;
 use Faker;
 use \joshtronic\LoremIpsum;
@@ -20,6 +22,13 @@ class AppFixtures extends Fixture
 
         $faker = Faker\Factory::create();
 
+        $exps = [];
+        for( $i=0; $i < 50; $i++){
+            $exp = new ProfessionalExperiences();
+           
+            $manager->persist($exp);
+            $exps[] = $exp;
+        }
         
 
         $manager->flush();
