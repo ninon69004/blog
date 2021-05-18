@@ -67,18 +67,11 @@ Creating project
     data base
         symfony console make:entity 
 
-User: username, firstName, lastName, email, password, createdAt
 
-Category: title, description (text, nullable), createdAt
-
-Article (categories) <----- ManyToOne-----> Category (articles)
-
-
-
-symfony console doctrine:database:create -> Créer la base de donnée
-symfony console make:migration -> Préparer la "migration" en vue de persister le schema sur la BDD
-symfony console doctrine:migrations:migrate -> Migrer la BDD vers la nouvelle version
-symfony console doctrine:migrations:sync-metadata-storage -> update
+        symfony console doctrine:database:create -> Créer la base de donnée
+        symfony console make:migration -> Préparer la "migration" en vue de persister le schema sur la BDD
+        symfony console doctrine:migrations:migrate -> Migrer la BDD vers la nouvelle version
+        symfony console doctrine:migrations:sync-metadata-storage -> update
 
 
 
