@@ -34,11 +34,17 @@ class AppFixtures extends Fixture
             $exp->setAddress($faker->city);
             $manager->persist($exp);
         }
-        for( $i=0; $i < 12; $i++){
+        $hob_icons= ["sports_esports", "sailing","kayaking","sports_hockey", "emoji_nature", "emoji_food_beverage","construction","deck"];
+        for( $i=0; $i < 10; $i++){
             $hob = new Hobbies();
             $hob->setName($faker->word);
             $hob->setCreatedAt(new DateTime());
-            $hob->setIcon($faker->word);
+            if (isset($hob_icons[$i])){
+                $hob->setIcon($hob_icons[$i]);
+            }
+            else {
+                $hob->setIcon($faker->word);
+            }
             $hob->setDescription($faker->text($faker->numberBetween(100,400)));
             $manager->persist($hob);
         }
