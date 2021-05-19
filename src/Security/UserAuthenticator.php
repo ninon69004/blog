@@ -79,7 +79,7 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        dd($credentials,$this->passwordEncoder->isPasswordValid($user, $credentials['password']));
+        //dd($credentials,$this->passwordEncoder->isPasswordValid($user, $credentials['password']));
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
@@ -98,7 +98,11 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
         }
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        // return new RedirectResponse($this->urlGenerator->generate('articleUserView', ['id'=> ...]));
+        // echo($this->getCredentials()['email']);
+        // $repo = $this->getDoctrine()->getRepository(User::class);
+        // $id = $repo->findOneByEmail($this->getCredentials()['email']); */
+        return new RedirectResponse($this->urlGenerator->generate('articleIndex'));
     }
 
     protected function getLoginUrl()

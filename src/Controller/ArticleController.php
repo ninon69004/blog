@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Entity\Category;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,11 +15,13 @@ class ArticleController extends AbstractController
 {
     private $articleRepo;
     private $categoryRepo;
+    private $userRepo;
 
-    public function __construct(ArticleRepository $aRepo, CategoryRepository $cRepo)
+    public function __construct(ArticleRepository $aRepo, CategoryRepository $cRepo, UserRepository $uRepo)
     {
         $this->articleRepo = $aRepo;
         $this->categoryRepo = $cRepo;
+        $this->userRepo = $uRepo;
 
     }
     /**
@@ -63,6 +66,22 @@ class ArticleController extends AbstractController
         if (!$category)
             return $this->redirectToRoute('articleIndex');
         $articles = $category->getArticles();
+        return $this->render('article/index.html.twig', [
+            'articles'=> $articles,
+            'categories'=> $categories
+        ]);
+    }
+
+    /**
+     * @Route("/article/user/{id}", name="articleUserView")
+     */
+    public function articleUserView($id): Response
+    {
+        $user = $this->userRepo->find($id);
+        if (!$user)
+            return $this->redirectToRoute('articleIndex');
+        $categories = $this->categoryRepo->findAll();
+        $articles = $user->getArticles();
         return $this->render('article/index.html.twig', [
             'articles'=> $articles,
             'categories'=> $categories

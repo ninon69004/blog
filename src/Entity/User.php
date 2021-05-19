@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Encoder\SodiumPasswordEncoder;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -124,7 +125,9 @@ class User implements UserInterface
 
     public function setPassword(string $password): self
     {
-        $this->password = $password;
+        $encoder = new SodiumPasswordEncoder();
+
+        $this->password =$encoder->encodePassword( $password, $this->getSalt());
 
         return $this;
     }
