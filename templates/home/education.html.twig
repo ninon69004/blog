@@ -5,5 +5,26 @@
 {% block body %} 
 
     <h1> Education </h2>
+    <div class="row">
+        {% for edu in educations %}
+            <div class="col-sm-6" style="padding: 5rem;">
+                <div class="row" style="align-items:center">
+                    <span class="col-auto material-icons" style="font-size: 5rem;">school</span>
+                    <div class="col">
+                        <h4>{{edu.title}}</h4>
+                        <h5 class="row" style="justify-content: space-between;">
+                            <span class="col">{{ edu.diploma}}</span>
+                            <small class="text-muted col-auto">{{ edu.diplomaDate|date("m/d/Y") }}</small>
+                        </h5>
+                        <h6>{{edu.address}}</h6>
+                    </div>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{edu.fulfillment}}" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+                </div>
+                <div>{{edu.description}}</div>
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}
