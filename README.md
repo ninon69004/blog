@@ -42,6 +42,8 @@ Creating project
             
             composer require symfony/security-bundle
 
+            composer req profiler
+
 
 
     creer controller
@@ -84,6 +86,9 @@ Creating project
         symfony console make:entity
         symfony console make:auth
         symfony console make:admin:crud
+
+        
+
     
     
 
