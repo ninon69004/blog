@@ -5,7 +5,7 @@ h1, h2, h3{
 h1 {
     margin-top: 20vh;
 }
-.article-view-content h1, h2, h3 {
+.article-view-content h1,.article-view-content h2,.article-view-content h3 {
     text-transform: none !important;
     text-align: left !important;
 }

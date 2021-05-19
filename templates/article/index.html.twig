@@ -3,34 +3,53 @@
 {% block title %}Articles{% endblock %}
 
 {% block body %} 
-
-    <h1> Articles </h2>
-    <div class="row" style="justify-content: center;">
-        {% for article in articles %}
-            <div class="card col-md-4" style="width: 18rem; margin:5px;">
-                <div class="card-body" 
-                    style="max-height:500px;
-                    height:250px;
-                    overflow: auto hidden;
-                    box-sizing: content-box;"
-                >
-                    <h5 class="card-title">{{article.title}}</h5>
-                    {% if article.image != null %}
-                        <img style="width:100%"; src="/assets/upload/images/{{article.image}}" alt="{{article.title}}"/>
-                    {% else %}
-                        <div style="text-align:center;padding:5px; ">
-                            <div class="material-icons">image_not_supported</div>
-                            <div>No image</div>
-                        </div>
-                    {% endif %}
-                    
-                    
-                    <p class="card-text" style="text-overflow:ellipsis;">
-                        {{article.content | raw}}
-                    </p>
-                </div>
+    <div style="display: flex; align-items: stretch;">
+            
+        <!-- Sidebar -->
+        <nav id="sidebar" style="padding: 20px; background: rgba(255,255,255,0.3">
+            <div class="sidebar-header">
+                <h3>Article categories</h3>
             </div>
-        {% endfor %}
+
+            <ul class="list-unstyled components">
+                {% for cate in categories %}
+                    <li>
+                        <a href="/article/category/{{cate.id}}">{{cate.title}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>          
+        <div id="content" class="container">
+            <h1> Articles </h2>
+            <div class="row" style="justify-content: center;">
+                {% for article in articles %}
+                    <div class="card col-md-4" style="width: 18rem; margin:5px;">
+                        <div class="card-body" 
+                            style="max-height:500px;
+                            height:250px;
+                            overflow: auto hidden;
+                            box-sizing: content-box;"
+                        >
+                            <h5 class="card-title">{{article.title}}</h5>
+                            {% if article.image != null %}
+                                <img style="width:100%"; src="/assets/upload/images/{{article.image}}" alt="{{article.title}}"/>
+                            {% else %}
+                                <div style="text-align:center;padding:5px; ">
+                                    <div class="material-icons">image_not_supported</div>
+                                    <div>No image</div>
+                                </div>
+                            {% endif %}
+                            
+                            
+                            <p class="card-text" style="text-overflow:ellipsis;">
+                                {{article.content | raw}}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
     </div>
   
 {% endblock %}

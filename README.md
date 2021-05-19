@@ -39,6 +39,8 @@ Creating project
             composer req mime
                 permet de reconnaitre les fichier (leur extensions)
                 //problem import image avec ImageField de EasyAdmin
+            
+            composer require symfony/security-bundle
 
 
 
@@ -77,6 +79,13 @@ Creating project
         symfony console make:migration -> Préparer la "migration" en vue de persister le schema sur la BDD
         symfony console doctrine:migrations:migrate -> Migrer la BDD vers la nouvelle version
         symfony console doctrine:migrations:sync-metadata-storage -> update
+
+        symfony console make:user
+        symfony console make:entity
+        symfony console make:auth
+        symfony console make:admin:crud
+    
+    
 
 
 
