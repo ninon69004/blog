@@ -7,7 +7,7 @@
     <h1> Education </h2>
     <div class="row">
         {% for edu in educations %}
-            <div class="col-sm-6" style="padding: 5rem;">
+            <div class="col-md-6" style="padding: 5rem;">
                 <div class="row" style="align-items:center">
                     <span class="col-auto material-icons" style="font-size: 5rem;">school</span>
                     <div class="col">
@@ -19,8 +19,9 @@
                         <h6>{{edu.address}}</h6>
                     </div>
                 </div>
+                <div>{{edu.fulfillment}}</div>
                 <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{edu.fulfillment}}" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{edu.fulfillment}}" aria-valuemin="0" aria-valuemax="100" style="width: {{edu.fulfillment}}% ;"></div>
                 </div>
                 <div>{{edu.description}}</div>
             </div>
