@@ -51,6 +51,13 @@ class HomeController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Education::class);
 
         $educa = $repo->findAll();
+
+        usort($educa, function($a1, $a2) {
+            echo(strtotime($a1->getDiplomaDate()));
+            $v1 = strtotime($a1->getDiplomaDate());
+            $v2 = strtotime($a2->getDiplomaDate());
+            return $v2 - $v1; // $v2 - $v1 to reverse direction
+         });
         return $this->render('home/education.html.twig', [
             'educations' => $educa
         ]);

@@ -5,5 +5,22 @@
 {% block body %} 
 
     <h1> Mes expériences professionnelles </h2>
-
+    <div class="row">
+        {% for exp in exps %}
+            <div class="col-md-6" style="padding: 5rem;">
+                <div class="row" style="align-items:center">
+                    <span class="col-auto material-icons" style="font-size: 5rem;">school</span>
+                    <div class="col">
+                        <h4>{{exp.title}}</h4>
+                        <h5 class="row" style="justify-content: space-between;">
+                            <span class="col">{{ exp.company}}</span>
+                            <small class="text-muted col-auto">{{ exp.startDate|date("m/d/Y") }} - {{ exp.endDate|date("m/d/Y") }}</small>
+                        </h5>
+                        <h6>{{exp.address}}</h6>
+                    </div>
+                </div>               
+                <div>{{exp.description}}</div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
