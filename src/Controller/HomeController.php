@@ -27,6 +27,12 @@ class HomeController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(ProfessionalExperiences::class);
 
         $exps = $repo->findAll();
+
+        usort($exps, function($a1, $a2) {
+            $v1 = strtotime($a1->getStartDate()->format('Y-m-d'));
+            $v2 = strtotime($a2->getStartDate()->format('Y-m-d'));
+            return $v2 - $v1; // $v2 - $v1 to reverse direction
+         });
         return $this->render('home/exp.html.twig', [
             'exps'=>$exps
         ]);
@@ -53,9 +59,8 @@ class HomeController extends AbstractController
         $educa = $repo->findAll();
 
         usort($educa, function($a1, $a2) {
-            echo(strtotime($a1->getDiplomaDate()));
-            $v1 = strtotime($a1->getDiplomaDate());
-            $v2 = strtotime($a2->getDiplomaDate());
+            $v1 = strtotime($a1->getDiplomaDate()->format('Y-m-d'));
+            $v2 = strtotime($a2->getDiplomaDate()->format('Y-m-d'));
             return $v2 - $v1; // $v2 - $v1 to reverse direction
          });
         return $this->render('home/education.html.twig', [
