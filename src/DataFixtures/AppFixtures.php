@@ -49,10 +49,10 @@ class AppFixtures extends Fixture
             $article->setTitle($faker->text(50));
             $article->setContent($faker->text(6000));
             $article->setCreatedAt(new DateTime());
-
+            $article->setImage(null);
             $article->setAuthor($users[$faker->numberBetween(0,49)]);
             $article->addCategory($categories[$faker->numberBetween(0,14)]);
-
+            
             $manager->persist($article);
             $articles[] = $article;
         }

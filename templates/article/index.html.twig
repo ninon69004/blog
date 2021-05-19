@@ -9,11 +9,12 @@
         {% for article in articles %}
             <div class="card col-md-4" style="width: 18rem; margin:5px;">
                 <div class="card-body" 
-                    style="max-height:250px;
+                    style="max-height:500px;
                     height:250px;
                     overflow: auto hidden;
                     box-sizing: content-box;"
                 >
+                    <img src="/assets/upload/images/{{article.image ? article.image : 'no-image-found.png'}}" alt="{{article.title}}"/>
                     <h5 class="card-title">{{article.title}}</h5>
                     <p class="card-text" style="text-overflow:ellipsis;">
                         {{article.content}}

@@ -36,6 +36,10 @@ Creating project
                 * Configure your Dashboard at "src/Controller/Admin/AdminController.php"
                  * Run "make:admin:crud" to generate CRUD controllers and link them from the Dashboard.
 
+            composer req mime
+                permet de reconnaitre les fichier (leur extensions)
+                //problem import image avec ImageField de EasyAdmin
+
 
 
     creer controller
