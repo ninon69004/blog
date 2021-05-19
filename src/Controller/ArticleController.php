@@ -22,4 +22,18 @@ class ArticleController extends AbstractController
             'articles'=> $articles
         ]);
     }
+    /**
+     * @Route("/article/{id}", name="articleView")
+     */
+    public function articleView($id): Response
+    {
+        $repo = $this->getDoctrine()->getRepository(Article::class);
+
+        $article = $repo->find($id);
+        if (!$article)
+            return $this->redirectToRoute('articleIndex');
+        return $this->render('article/view.html.twig', [
+            'article'=> $article
+        ]);
+    }
 }
