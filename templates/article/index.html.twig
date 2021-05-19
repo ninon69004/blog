@@ -14,10 +14,19 @@
                     overflow: auto hidden;
                     box-sizing: content-box;"
                 >
-                    <img src="/assets/upload/images/{{article.image ? article.image : 'no-image-found.png'}}" alt="{{article.title}}"/>
                     <h5 class="card-title">{{article.title}}</h5>
+                    {% if article.image != null %}
+                        <img style="width:100%"; src="/assets/upload/images/{{article.image}}" alt="{{article.title}}"/>
+                    {% else %}
+                        <div style="text-align:center;padding:5px; ">
+                            <div class="material-icons">image_not_supported</div>
+                            <div>No image</div>
+                        </div>
+                    {% endif %}
+                    
+                    
                     <p class="card-text" style="text-overflow:ellipsis;">
-                        {{article.content}}
+                        {{article.content | raw}}
                     </p>
                 </div>
             </div>
